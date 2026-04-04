@@ -2,12 +2,18 @@ import React, { useState } from 'react';
 import { Config } from '../types';
 import { X, Copy, Check } from 'lucide-react';
 
-export function CodeModal({ config, onClose }: { config: Config; onClose: () => void }) {
+export function CodeModal({
+  config,
+  onClose,
+}: {
+  config: Config;
+  onClose: () => void;
+}) {
   const [copied, setCopied] = useState(false);
 
   const generateCode = () => {
     const configJson = JSON.stringify(config);
-    
+
     return `<script>
 (function() {
   const config = ${configJson};
@@ -250,17 +256,23 @@ export function CodeModal({ config, onClose }: { config: Config; onClose: () => 
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl overflow-hidden flex flex-col max-h-[90vh]">
         <div className="flex items-center justify-between p-4 border-b border-gray-200">
-          <h2 className="text-xl font-semibold text-gray-900">Your Widget Code</h2>
-          <button onClick={onClose} className="text-gray-500 hover:text-gray-700 transition-colors">
+          <h2 className="text-xl font-semibold text-gray-900">
+            Your Widget Code
+          </h2>
+          <button
+            onClick={onClose}
+            className="text-gray-500 hover:text-gray-700 transition-colors"
+          >
             <X size={24} />
           </button>
         </div>
-        
+
         <div className="p-6 overflow-y-auto flex-1">
           <p className="text-gray-600 mb-4">
-            Copy the code below and paste it before the closing <code>&lt;/body&gt;</code> tag on your website.
+            Copy the code below and paste it before the closing{' '}
+            <code>&lt;/body&gt;</code> tag on your website.
           </p>
-          
+
           <div className="relative group">
             <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm font-mono leading-relaxed">
               <code>{code}</code>
@@ -269,8 +281,14 @@ export function CodeModal({ config, onClose }: { config: Config; onClose: () => 
               onClick={handleCopy}
               className="absolute top-4 right-4 bg-white/10 hover:bg-white/20 text-white p-2 rounded-md backdrop-blur-sm transition-all flex items-center gap-2"
             >
-              {copied ? <Check size={16} className="text-green-400" /> : <Copy size={16} />}
-              <span className="text-sm font-medium">{copied ? 'Copied!' : 'Copy Code'}</span>
+              {copied ? (
+                <Check size={16} className="text-green-400" />
+              ) : (
+                <Copy size={16} />
+              )}
+              <span className="text-sm font-medium">
+                {copied ? 'Copied!' : 'Copy Code'}
+              </span>
             </button>
           </div>
         </div>
