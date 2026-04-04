@@ -8,14 +8,20 @@ type Props = {
 };
 
 export function SettingsPanel({ config, setConfig }: Props) {
-  const [activeTab, setActiveTab] = useState<'connect' | 'content' | 'settings' | 'appearance'>('connect');
+  const [activeTab, setActiveTab] = useState<
+    'connect' | 'content' | 'settings' | 'appearance'
+  >('connect');
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const updateConfig = (key: keyof Config, value: any) => {
     setConfig((prev) => ({ ...prev, [key]: value }));
   };
 
   const updateColor = (key: keyof Config['colors'], value: string) => {
-    setConfig((prev) => ({ ...prev, colors: { ...prev.colors, [key]: value } }));
+    setConfig((prev) => ({
+      ...prev,
+      colors: { ...prev.colors, [key]: value },
+    }));
   };
 
   return (
@@ -52,9 +58,13 @@ export function SettingsPanel({ config, setConfig }: Props) {
       <div className="flex-1 bg-[#2b2b2b] text-gray-200 overflow-y-auto p-6">
         {activeTab === 'connect' && (
           <div className="space-y-6">
-            <h2 className="text-xl font-semibold text-white mb-4 text-center">Connect</h2>
+            <h2 className="text-xl font-semibold text-white mb-4 text-center">
+              Connect
+            </h2>
             <div className="bg-[#3a3a3a] p-4 rounded-lg">
-              <label className="block text-sm font-medium mb-2 text-gray-300">WhatsApp Number or Link</label>
+              <label className="block text-sm font-medium mb-2 text-gray-300">
+                WhatsApp Number or Link
+              </label>
               <input
                 type="text"
                 value={config.phoneNumber}
@@ -63,7 +73,8 @@ export function SettingsPanel({ config, setConfig }: Props) {
                 className="w-full bg-[#2b2b2b] border border-gray-600 rounded px-3 py-2 text-white focus:outline-none focus:border-[#25D366]"
               />
               <p className="text-xs text-gray-400 mt-2">
-                Example: +13833739407<br />
+                Example: +13833739407
+                <br />
                 Please include country code and do not start with 0 or 00.
               </p>
             </div>
@@ -72,13 +83,19 @@ export function SettingsPanel({ config, setConfig }: Props) {
 
         {activeTab === 'content' && (
           <div className="space-y-6">
-            <h2 className="text-xl font-semibold text-white mb-4 text-center">Content</h2>
-            
+            <h2 className="text-xl font-semibold text-white mb-4 text-center">
+              Content
+            </h2>
+
             <div className="space-y-4">
-              <h3 className="text-xs font-bold text-gray-400 tracking-wider uppercase">Chat Bubble</h3>
+              <h3 className="text-xs font-bold text-gray-400 tracking-wider uppercase">
+                Chat Bubble
+              </h3>
               <div className="bg-[#3a3a3a] p-4 rounded-lg space-y-4">
                 <div>
-                  <label className="block text-sm font-medium mb-2">Bubble Text</label>
+                  <label className="block text-sm font-medium mb-2">
+                    Bubble Text
+                  </label>
                   <input
                     type="text"
                     value={config.bubbleText}
@@ -89,14 +106,20 @@ export function SettingsPanel({ config, setConfig }: Props) {
                 </div>
               </div>
 
-              <h3 className="text-xs font-bold text-gray-400 tracking-wider uppercase pt-4">Chat Window</h3>
+              <h3 className="text-xs font-bold text-gray-400 tracking-wider uppercase pt-4">
+                Chat Window
+              </h3>
               <div className="bg-[#3a3a3a] p-4 rounded-lg space-y-4">
                 <div>
-                  <label className="block text-sm font-medium mb-2">Picture URL</label>
+                  <label className="block text-sm font-medium mb-2">
+                    Picture URL
+                  </label>
                   <input
                     type="text"
                     value={config.profilePicture}
-                    onChange={(e) => updateConfig('profilePicture', e.target.value)}
+                    onChange={(e) =>
+                      updateConfig('profilePicture', e.target.value)
+                    }
                     className="w-full bg-[#2b2b2b] border border-gray-600 rounded px-3 py-2 text-white focus:outline-none focus:border-[#25D366]"
                   />
                 </div>
@@ -110,7 +133,9 @@ export function SettingsPanel({ config, setConfig }: Props) {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Caption</label>
+                  <label className="block text-sm font-medium mb-2">
+                    Caption
+                  </label>
                   <input
                     type="text"
                     value={config.caption}
@@ -120,17 +145,23 @@ export function SettingsPanel({ config, setConfig }: Props) {
                 </div>
               </div>
 
-              <h3 className="text-xs font-bold text-gray-400 tracking-wider uppercase pt-4">Welcome Message</h3>
+              <h3 className="text-xs font-bold text-gray-400 tracking-wider uppercase pt-4">
+                Welcome Message
+              </h3>
               <div className="bg-[#3a3a3a] p-4 rounded-lg">
                 <textarea
                   value={config.welcomeMessage}
-                  onChange={(e) => updateConfig('welcomeMessage', e.target.value)}
+                  onChange={(e) =>
+                    updateConfig('welcomeMessage', e.target.value)
+                  }
                   rows={4}
                   className="w-full bg-[#2b2b2b] border border-gray-600 rounded px-3 py-2 text-white focus:outline-none focus:border-[#25D366] resize-none"
                 />
               </div>
 
-              <h3 className="text-xs font-bold text-gray-400 tracking-wider uppercase pt-4">Start Chat Method</h3>
+              <h3 className="text-xs font-bold text-gray-400 tracking-wider uppercase pt-4">
+                Start Chat Method
+              </h3>
               <div className="bg-[#3a3a3a] p-4 rounded-lg space-y-3">
                 <label className="flex items-start gap-3 cursor-pointer">
                   <input
@@ -143,7 +174,9 @@ export function SettingsPanel({ config, setConfig }: Props) {
                   />
                   <div>
                     <div className="font-medium">Start Chat Button</div>
-                    <div className="text-xs text-gray-400">Visitor clicks the button to open WhatsApp.</div>
+                    <div className="text-xs text-gray-400">
+                      Visitor clicks the button to open WhatsApp.
+                    </div>
                   </div>
                 </label>
                 <label className="flex items-start gap-3 cursor-pointer">
@@ -157,7 +190,10 @@ export function SettingsPanel({ config, setConfig }: Props) {
                   />
                   <div>
                     <div className="font-medium">Send Message</div>
-                    <div className="text-xs text-gray-400">Visitor writes a message to you in WhatsApp to start a conversation.</div>
+                    <div className="text-xs text-gray-400">
+                      Visitor writes a message to you in WhatsApp to start a
+                      conversation.
+                    </div>
                   </div>
                 </label>
               </div>
@@ -167,8 +203,10 @@ export function SettingsPanel({ config, setConfig }: Props) {
 
         {activeTab === 'settings' && (
           <div className="space-y-6">
-            <h2 className="text-xl font-semibold text-white mb-4 text-center">Position</h2>
-            
+            <h2 className="text-xl font-semibold text-white mb-4 text-center">
+              Position
+            </h2>
+
             <div className="bg-[#3a3a3a] p-4 rounded-lg space-y-3">
               <label className="flex items-center gap-3 cursor-pointer">
                 <input
@@ -205,7 +243,9 @@ export function SettingsPanel({ config, setConfig }: Props) {
             {config.position === 'floating' && (
               <div className="bg-[#3a3a3a] rounded-lg overflow-hidden">
                 <div className="p-4 border-b border-gray-600">
-                  <label className="block text-sm font-medium mb-3">Alignment</label>
+                  <label className="block text-sm font-medium mb-3">
+                    Alignment
+                  </label>
                   <div className="flex bg-[#2b2b2b] rounded p-1">
                     <button
                       className={`flex-1 py-1 text-sm rounded ${config.alignment === 'left' ? 'bg-[#1a73e8] text-white' : 'text-gray-400'}`}
@@ -227,33 +267,45 @@ export function SettingsPanel({ config, setConfig }: Props) {
                     </button>
                   </div>
                 </div>
-                
+
                 <div className="p-4 border-b border-gray-600">
                   <div className="flex justify-between mb-2">
-                    <label className="text-sm font-medium">Vertical Offset</label>
-                    <span className="text-[#1a73e8] text-sm">{config.verticalOffset}px</span>
+                    <label className="text-sm font-medium">
+                      Vertical Offset
+                    </label>
+                    <span className="text-[#1a73e8] text-sm">
+                      {config.verticalOffset}px
+                    </span>
                   </div>
                   <input
                     type="range"
                     min="0"
                     max="100"
                     value={config.verticalOffset}
-                    onChange={(e) => updateConfig('verticalOffset', parseInt(e.target.value))}
+                    onChange={(e) =>
+                      updateConfig('verticalOffset', parseInt(e.target.value))
+                    }
                     className="w-full"
                   />
                 </div>
 
                 <div className="p-4">
                   <div className="flex justify-between mb-2">
-                    <label className="text-sm font-medium">Horizontal Offset</label>
-                    <span className="text-[#1a73e8] text-sm">{config.horizontalOffset}px</span>
+                    <label className="text-sm font-medium">
+                      Horizontal Offset
+                    </label>
+                    <span className="text-[#1a73e8] text-sm">
+                      {config.horizontalOffset}px
+                    </span>
                   </div>
                   <input
                     type="range"
                     min="0"
                     max="100"
                     value={config.horizontalOffset}
-                    onChange={(e) => updateConfig('horizontalOffset', parseInt(e.target.value))}
+                    onChange={(e) =>
+                      updateConfig('horizontalOffset', parseInt(e.target.value))
+                    }
                     className="w-full"
                   />
                 </div>
@@ -264,8 +316,10 @@ export function SettingsPanel({ config, setConfig }: Props) {
 
         {activeTab === 'appearance' && (
           <div className="space-y-6">
-            <h2 className="text-xl font-semibold text-white mb-4 text-center">Appearance</h2>
-            
+            <h2 className="text-xl font-semibold text-white mb-4 text-center">
+              Appearance
+            </h2>
+
             <div className="bg-[#3a3a3a] rounded-lg overflow-hidden mb-4">
               <div className="p-4 border-b border-gray-600">
                 <label className="block text-sm font-medium mb-3">Font</label>
@@ -276,34 +330,80 @@ export function SettingsPanel({ config, setConfig }: Props) {
                 >
                   <option value="inherit">Default</option>
                   <option value="Arial, sans-serif">Arial</option>
-                  <option value="'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Segoe UI</option>
-                  <option value="'Helvetica Neue', Helvetica, Arial, sans-serif">Helvetica</option>
-                  <option value="'Times New Roman', Times, serif">Times New Roman</option>
+                  <option value="'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
+                    Segoe UI
+                  </option>
+                  <option value="'Helvetica Neue', Helvetica, Arial, sans-serif">
+                    Helvetica
+                  </option>
+                  <option value="'Times New Roman', Times, serif">
+                    Times New Roman
+                  </option>
                 </select>
               </div>
             </div>
 
             <div className="bg-[#3a3a3a] rounded-lg overflow-hidden">
-              <ColorPickerRow label="Bubble Background Color" value={config.colors.bubbleBackground} onChange={(v) => updateColor('bubbleBackground', v)} />
-              <ColorPickerRow label="Bubble Icon Color" value={config.colors.bubbleIcon} onChange={(v) => updateColor('bubbleIcon', v)} />
-              <ColorPickerRow label="Bubble Notification Badge" value={config.colors.bubbleNotificationBadge} onChange={(v) => updateColor('bubbleNotificationBadge', v)} />
-              <ColorPickerRow label="Header Background Color" value={config.colors.headerBackground} onChange={(v) => updateColor('headerBackground', v)} />
-              <ColorPickerRow label="User Online Status Color" value={config.colors.userOnlineStatus} onChange={(v) => updateColor('userOnlineStatus', v)} />
-              <ColorPickerRow label="Chat Wallpaper" value={config.colors.chatWallpaper} onChange={(v) => updateColor('chatWallpaper', v)} />
-              <ColorPickerRow label="Message Background Color" value={config.colors.messageBackground} onChange={(v) => updateColor('messageBackground', v)} />
-              <ColorPickerRow label="Message Field Color" value={config.colors.messageField} onChange={(v) => updateColor('messageField', v)} />
-              <ColorPickerRow label="Send Message Button Color" value={config.colors.sendMessageButton} onChange={(v) => updateColor('sendMessageButton', v)} />
+              <ColorPickerRow
+                label="Bubble Background Color"
+                value={config.colors.bubbleBackground}
+                onChange={(v) => updateColor('bubbleBackground', v)}
+              />
+              <ColorPickerRow
+                label="Bubble Icon Color"
+                value={config.colors.bubbleIcon}
+                onChange={(v) => updateColor('bubbleIcon', v)}
+              />
+              <ColorPickerRow
+                label="Bubble Notification Badge"
+                value={config.colors.bubbleNotificationBadge}
+                onChange={(v) => updateColor('bubbleNotificationBadge', v)}
+              />
+              <ColorPickerRow
+                label="Header Background Color"
+                value={config.colors.headerBackground}
+                onChange={(v) => updateColor('headerBackground', v)}
+              />
+              <ColorPickerRow
+                label="User Online Status Color"
+                value={config.colors.userOnlineStatus}
+                onChange={(v) => updateColor('userOnlineStatus', v)}
+              />
+              <ColorPickerRow
+                label="Chat Wallpaper"
+                value={config.colors.chatWallpaper}
+                onChange={(v) => updateColor('chatWallpaper', v)}
+              />
+              <ColorPickerRow
+                label="Message Background Color"
+                value={config.colors.messageBackground}
+                onChange={(v) => updateColor('messageBackground', v)}
+              />
+              <ColorPickerRow
+                label="Message Field Color"
+                value={config.colors.messageField}
+                onChange={(v) => updateColor('messageField', v)}
+              />
+              <ColorPickerRow
+                label="Send Message Button Color"
+                value={config.colors.sendMessageButton}
+                onChange={(v) => updateColor('sendMessageButton', v)}
+              />
             </div>
 
-            <h3 className="text-xs font-bold text-gray-400 tracking-wider uppercase pt-4">Bubble Animation</h3>
+            <h3 className="text-xs font-bold text-gray-400 tracking-wider uppercase pt-4">
+              Bubble Animation
+            </h3>
             <div className="bg-[#3a3a3a] p-4 rounded-lg flex items-center justify-between">
               <label className="text-sm font-medium">Enable Animation</label>
               <label className="relative inline-flex items-center cursor-pointer">
-                <input 
-                  type="checkbox" 
-                  className="sr-only peer" 
+                <input
+                  type="checkbox"
+                  className="sr-only peer"
                   checked={config.animationEnabled}
-                  onChange={(e) => updateConfig('animationEnabled', e.target.checked)}
+                  onChange={(e) =>
+                    updateConfig('animationEnabled', e.target.checked)
+                  }
                 />
                 <div className="w-11 h-6 bg-gray-600 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#1a73e8]"></div>
               </label>
@@ -315,7 +415,17 @@ export function SettingsPanel({ config, setConfig }: Props) {
   );
 }
 
-function TabButton({ icon, label, isActive, onClick }: { icon: React.ReactNode; label: string; isActive: boolean; onClick: () => void }) {
+function TabButton({
+  icon,
+  label,
+  isActive,
+  onClick,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  isActive: boolean;
+  onClick: () => void;
+}) {
   return (
     <button
       onClick={onClick}
@@ -327,7 +437,15 @@ function TabButton({ icon, label, isActive, onClick }: { icon: React.ReactNode; 
   );
 }
 
-function ColorPickerRow({ label, value, onChange }: { label: string; value: string; onChange: (v: string) => void }) {
+function ColorPickerRow({
+  label,
+  value,
+  onChange,
+}: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+}) {
   return (
     <div className="flex items-center justify-between p-4 border-b border-gray-600 last:border-0">
       <span className="text-sm">{label}</span>
