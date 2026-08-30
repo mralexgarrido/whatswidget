@@ -1,10 +1,14 @@
-import { Config } from './types';
+import { Config, PresetKey } from './types';
 
 export const DEFAULT_CONFIG: Config = {
-  phoneNumber: '',
-  bubbleText: '',
-  profilePicture: 'https://i.pravatar.cc/150?img=32',
-  name: 'Support Team',
+  preset: 'support',
+  phoneNumber: '+13833739407',
+  prefilledMessage: 'Hi! I need help with...',
+  bubbleText: 'Chat with us',
+  badgeText: '1',
+  profilePicture:
+    'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
+  name: 'Customer Support',
   caption: 'Typically replies in minutes',
   welcomeMessage: 'Hi there! 👋\nHow can we help you today?',
   startChatMethod: 'message',
@@ -25,4 +29,130 @@ export const DEFAULT_CONFIG: Config = {
     sendMessageButton: '#25D366',
   },
   animationEnabled: true,
+  enableMultiAgent: false,
+  agents: [
+    {
+      id: '1',
+      name: 'Sarah Jenkins',
+      role: 'Support Manager',
+      phoneNumber: '+13833739407',
+      profilePicture:
+        'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
+      isOnline: true,
+    },
+    {
+      id: '2',
+      name: 'Alex Rivera',
+      role: 'Sales Executive',
+      phoneNumber: '+13833739408',
+      profilePicture:
+        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80',
+      isOnline: true,
+    },
+  ],
+  autoOpenDelay: 0,
+  showQrCode: true,
+  workingHours: {
+    enabled: false,
+    startTime: '09:00',
+    endTime: '17:00',
+    days: [1, 2, 3, 4, 5],
+    offlineMessage:
+      'We are currently offline. Leave a message and we will reply as soon as possible!',
+  },
+};
+
+export const PRESETS: Record<PresetKey, Partial<Config>> = {
+  support: {
+    preset: 'support',
+    name: 'Customer Support',
+    caption: 'Typically replies within a few minutes',
+    welcomeMessage: 'Hi there! 👋\nHow can our support team assist you today?',
+    bubbleText: 'Need Help?',
+    colors: {
+      bubbleBackground: '#25D366',
+      bubbleIcon: '#ffffff',
+      bubbleNotificationBadge: '#ef4444',
+      headerBackground: '#075e54',
+      userOnlineStatus: '#22c55e',
+      chatWallpaper: '#efeae2',
+      messageBackground: '#ffffff',
+      messageField: '#f0f2f5',
+      sendMessageButton: '#00a884',
+    },
+  },
+  sales: {
+    preset: 'sales',
+    name: 'Sales & Inquiries',
+    caption: 'Ask us about pricing & custom plans',
+    welcomeMessage:
+      'Hello! 🚀 Interested in boosting your sales? Ask us anything!',
+    bubbleText: 'Talk to Sales',
+    colors: {
+      bubbleBackground: '#0084ff',
+      bubbleIcon: '#ffffff',
+      bubbleNotificationBadge: '#ff9800',
+      headerBackground: '#0052cc',
+      userOnlineStatus: '#00e676',
+      chatWallpaper: '#f0f4f9',
+      messageBackground: '#ffffff',
+      messageField: '#e9eef6',
+      sendMessageButton: '#0084ff',
+    },
+  },
+  booking: {
+    preset: 'booking',
+    name: 'Appointment Booking',
+    caption: 'Book your slot in seconds',
+    welcomeMessage:
+      'Welcome! 📅 Would you like to schedule a quick call or appointment?',
+    bubbleText: 'Book Now',
+    colors: {
+      bubbleBackground: '#7c3aed',
+      bubbleIcon: '#ffffff',
+      bubbleNotificationBadge: '#f43f5e',
+      headerBackground: '#5b21b6',
+      userOnlineStatus: '#10b981',
+      chatWallpaper: '#f5f3ff',
+      messageBackground: '#ffffff',
+      messageField: '#ede9fe',
+      sendMessageButton: '#7c3aed',
+    },
+  },
+  minimal: {
+    preset: 'minimal',
+    name: 'General Contact',
+    caption: 'Direct WhatsApp Line',
+    welcomeMessage: 'Hi! Send us a message directly via WhatsApp.',
+    bubbleText: '',
+    colors: {
+      bubbleBackground: '#111827',
+      bubbleIcon: '#ffffff',
+      bubbleNotificationBadge: '#10b981',
+      headerBackground: '#1f2937',
+      userOnlineStatus: '#10b981',
+      chatWallpaper: '#f9fafb',
+      messageBackground: '#ffffff',
+      messageField: '#f3f4f6',
+      sendMessageButton: '#111827',
+    },
+  },
+  dark: {
+    preset: 'dark',
+    name: 'Night Support',
+    caption: '24/7 Dark Mode Assistance',
+    welcomeMessage: 'Welcome to dark mode support 🌙 How can we help?',
+    bubbleText: 'Chat Now',
+    colors: {
+      bubbleBackground: '#1e293b',
+      bubbleIcon: '#25d366',
+      bubbleNotificationBadge: '#ef4444',
+      headerBackground: '#0f172a',
+      userOnlineStatus: '#22c55e',
+      chatWallpaper: '#1e293b',
+      messageBackground: '#334155',
+      messageField: '#334155',
+      sendMessageButton: '#25d366',
+    },
+  },
 };
