@@ -22,7 +22,7 @@ The maintained application is intentionally lightweight. It does not require an 
 - Copy-ready, standalone embed code
 - Responsive React and TypeScript interface
 - Static GitHub Pages deployment
-- Automated type checking, linting, formatting, tests, dependency review, and CodeQL analysis
+- Automated type checking, linting, formatting, tests, Dependabot updates, and CodeQL analysis
 - MIT-licensed source code
 
 ## Use the generator

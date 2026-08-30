@@ -9,7 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 ### Added
 
 - Professional public-project documentation for support, privacy, architecture, embedding, and release validation.
-- Structured GitHub issue forms, CODEOWNERS, dependency review, and CodeQL analysis.
+- Structured GitHub issue forms, CODEOWNERS, Dependabot maintenance, and CodeQL analysis.
 - Search, social-sharing, manifest, crawler, and answer-engine metadata.
 - A responsive app shell with public repository and privacy links.
 

@@ -33,7 +33,6 @@ The copied snippet runs on the adopting website. The adopting site owner is resp
 - ESLint and Prettier validation
 - Vitest test suite
 - Reproducible Vite production build
-- Dependency review on pull requests
 - CodeQL scanning for JavaScript and TypeScript
 - Dependabot updates for npm and GitHub Actions
 

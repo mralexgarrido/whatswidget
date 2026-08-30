@@ -6,10 +6,9 @@ describe('WhatsWidget', () => {
     render(<App />);
     expect(screen.getByText('WhatsWidget')).toBeInTheDocument();
     expect(screen.getByText('Get Code')).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'View on GitHub' })).toHaveAttribute(
-      'rel',
-      'noopener noreferrer',
-    );
+    expect(
+      screen.getByRole('link', { name: 'View on GitHub' }),
+    ).toHaveAttribute('rel', 'noopener noreferrer');
   });
 
   it('renders tab options in settings panel', () => {
