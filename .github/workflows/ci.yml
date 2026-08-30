@@ -1,37 +1,42 @@
-name: CI
+name: Continuous integration
 
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  build-and-test:
+  quality:
+    name: Typecheck, lint, test, and build
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Check out repository
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version-file: .nvmrc
+          cache: npm
+          cache-dependency-path: package-lock.json
 
-      - name: Install dependencies
+      - name: Install locked dependencies
         run: npm ci
 
-      - name: Type Check
-        run: npm run typecheck
+      - name: Audit production dependencies
+        run: npm audit --omit=dev --audit-level=high
 
-      - name: Lint
-        run: npm run lint
+      - name: Run quality checks
+        run: npm run check:quality
 
-      - name: Format Check
-        run: npx prettier --check "src/**/*.{ts,tsx,css}"
-
-      - name: Test
-        run: npm run test
-
-      - name: Build
-        run: npm run build
+      - name: Build for GitHub Pages
+        run: npm run build -- --base=/whatswidget/

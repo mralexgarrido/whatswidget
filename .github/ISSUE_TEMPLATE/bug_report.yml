@@ -1,0 +1,96 @@
+name: Bug report
+description: Report a reproducible problem with the live generator, generated code, or repository workflow.
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for taking the time to report a problem. Remove private phone numbers, customer information, credentials, and unpublished access details before submitting.
+
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Preflight checks
+      options:
+        - label: I searched existing issues and did not find the same problem.
+          required: true
+        - label: I reviewed the README, support guide, and embedding guidance.
+          required: true
+        - label: This report does not disclose a security vulnerability.
+          required: true
+
+  - type: dropdown
+    id: affected-area
+    attributes:
+      label: Affected area
+      options:
+        - Live GitHub Pages application
+        - Widget preview
+        - Generated embed code
+        - Documentation
+        - Local development
+        - GitHub Actions or deployment
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+      description: Provide the live application URL, commit SHA, branch, or release where you observed the problem.
+      placeholder: https://mralexgarrido.github.io/whatswidget/ or a commit SHA
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Browser, operating system, and device
+      placeholder: Chrome on Windows 11, or Safari on iPhone
+    validations:
+      required: true
+
+  - type: input
+    id: platform
+    attributes:
+      label: Website platform, when relevant
+      description: Examples include WordPress, Shopify, Webflow, Sitejet, or a custom HTML site.
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Provide the smallest reliable sequence that demonstrates the problem.
+      placeholder: |
+        1. Open the generator.
+        2. Configure the widget.
+        3. Copy and install the generated code.
+        4. Observe the result.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Supporting evidence
+      description: Add sanitized screenshots, console messages, a minimal HTML example, or relevant logs. Do not include secrets or personal data.
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context

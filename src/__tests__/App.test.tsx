@@ -1,11 +1,14 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import App from '../App';
 
-describe('WhatsApp Widget Generator', () => {
-  it('renders main application header and get code button', () => {
+describe('WhatsWidget', () => {
+  it('renders the branded application header and code button', () => {
     render(<App />);
-    expect(screen.getByText('WhatsApp Widget')).toBeInTheDocument();
+    expect(screen.getByText('WhatsWidget')).toBeInTheDocument();
     expect(screen.getByText('Get Code')).toBeInTheDocument();
+    expect(
+      screen.getByRole('link', { name: 'View on GitHub' }),
+    ).toHaveAttribute('rel', 'noopener noreferrer');
   });
 
   it('renders tab options in settings panel', () => {

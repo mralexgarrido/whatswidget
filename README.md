@@ -1,113 +1,122 @@
-# WhatsApp Widget Generator
+# WhatsWidget
 
-![GitHub License](https://img.shields.io/github/license/user/whatsapp-widget-generator)
-![GitHub Issues](https://img.shields.io/github/issues/user/whatsapp-widget-generator)
-![GitHub Pull Requests](https://img.shields.io/github/issues-pr/user/whatsapp-widget-generator)
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/user/whatsapp-widget-generator/ci.yml)
+**Create, preview, and embed a customizable WhatsApp contact widget for your website.**
 
-A powerful, open-source web application that enables website owners to easily create, customize, and embed WhatsApp chat widgets on their sites at no cost. Built with React, Vite, and Tailwind CSS.
+[![Continuous integration](https://github.com/mralexgarrido/whatswidget/actions/workflows/ci.yml/badge.svg)](https://github.com/mralexgarrido/whatswidget/actions/workflows/ci.yml)
+[![GitHub Pages](https://github.com/mralexgarrido/whatswidget/actions/workflows/deploy.yml/badge.svg)](https://github.com/mralexgarrido/whatswidget/actions/workflows/deploy.yml)
+[![CodeQL](https://github.com/mralexgarrido/whatswidget/actions/workflows/codeql.yml/badge.svg)](https://github.com/mralexgarrido/whatswidget/actions/workflows/codeql.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
+**Live app:** [https://mralexgarrido.github.io/whatswidget/](https://mralexgarrido.github.io/whatswidget/)
+
+## Overview
+
+WhatsWidget is a free, open-source, browser-based generator for website owners who want to add a WhatsApp contact option without installing a large plugin or building a custom integration. Configure the widget, review the live preview, copy the generated snippet, and place it in your website's custom-code area.
+
+The maintained application is intentionally lightweight. It does not require an account, a project-owned backend, or a paid service.
 
 ## Features
 
-- **Customizable Interface:** Easily customize the chat widget's appearance, including colors, greeting messages, and avatar.
-- **Instant Preview:** See real-time changes to the widget as you configure it.
-- **Easy Integration:** Generate the copy-pasteable code snippet to embed directly into any HTML website.
-- **No Dependencies:** The generated code snippet relies on vanilla JavaScript and CSS, ensuring maximum compatibility and fast loading times on your website.
-- **Responsive Design:** Ensures the widget looks great on both desktop and mobile devices.
+- Interactive widget configuration with a live preview
+- Custom text, colors, placement, agents, triggers, and working hours
+- Copy-ready, standalone embed code
+- Responsive React and TypeScript interface
+- Static GitHub Pages deployment
+- Automated type checking, linting, formatting, tests, Dependabot updates, and CodeQL analysis
+- MIT-licensed source code
 
-## Demo
+## Use the generator
 
-[Link to Live Demo (GitHub Pages)](https://mralexgarrido.github.io/whatswidget/)
+1. Open the [live generator](https://mralexgarrido.github.io/whatswidget/).
+2. Enter a WhatsApp-enabled number in international format, including the country code and without spaces or punctuation.
+3. Configure the message, appearance, placement, and optional behavior.
+4. Review the preview at desktop and mobile sizes.
+5. Select **Get Code**, then copy the generated snippet.
+6. Install the snippet in your website's approved custom HTML or global code area.
+7. Publish and test the final page.
 
-## Usage
+See [Embedding and testing guidance](docs/EMBEDDING.md) for implementation notes and troubleshooting.
 
-You don't need to install anything to use the generator. Simply visit the live demo, configure your widget, and copy the generated code snippet!
+## Local development
 
-### Embedding the Widget
+### Requirements
 
-1. Configure your widget using the online tool.
-2. Click the "Get Code" button.
-3. Copy the provided HTML/JS snippet.
-4. Paste the snippet just before the closing `</body>` tag of your website's HTML file.
+- Node.js 24, as declared in [`.nvmrc`](.nvmrc)
+- npm 10 or newer
 
-## Development Setup
+### Setup
 
-If you want to run the generator app locally or contribute to the project:
+```bash
+git clone https://github.com/mralexgarrido/whatswidget.git
+cd whatswidget
+npm ci
+npm run dev
+```
 
-### Prerequisites
+The development server starts at `http://localhost:3000`.
 
-- Node.js (v18 or higher recommended)
-- npm or yarn
+### Quality checks
 
-### Installation
+```bash
+npm run check
+```
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/whatsapp-widget-generator.git
-   cd whatsapp-widget-generator
-   ```
+This command runs TypeScript validation, ESLint, Prettier verification, automated tests, and a production build.
 
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
+### Useful commands
 
-3. Run the development server:
-   ```bash
-   npm run dev
-   ```
+| Command | Purpose |
+| --- | --- |
+| `npm run dev` | Start the local development server |
+| `npm run typecheck` | Validate TypeScript |
+| `npm run lint` | Run ESLint |
+| `npm run format:check` | Verify formatting |
+| `npm run test` | Run the Vitest suite |
+| `npm run build` | Create the production build |
+| `npm run preview` | Preview the production build |
+| `npm run check` | Run the complete quality gate |
 
-4. Open your browser and navigate to `http://localhost:3000`.
+## Project structure
+
+```text
+.github/             GitHub Actions, issue forms, and repository automation
+docs/                Architecture, embedding, and release documentation
+public/              Static metadata and public assets
+src/                 React and TypeScript application source
+index.html           Application shell and search/social metadata
+vite.config.ts       Vite, Tailwind CSS, aliases, and test configuration
+```
+
+Read [Architecture](docs/ARCHITECTURE.md) for the runtime and deployment boundaries.
 
 ## Deployment
 
-The application is designed to be easily hosted on static site hosting platforms.
+Changes merged into `main` are validated and deployed through [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). The workflow publishes only Vite's compiled `dist` directory. Source TypeScript files are not served as the production application.
 
-### GitHub Pages (Recommended)
+The production URL is:
 
-This repository includes a GitHub Action workflow that automatically builds and deploys the application to GitHub Pages whenever changes are merged into the `main` branch.
-
-To enable this:
-1. Go to your repository settings.
-2. Navigate to "Pages" in the left sidebar.
-3. Under "Build and deployment", set the source to "GitHub Actions".
-
-### Docker
-
-A Dockerfile is provided for self-hosted deployments.
-
-```bash
-# Build the image
-docker build -t whatsapp-widget .
-
-# Run the container
-docker run -p 8080:80 whatsapp-widget
+```text
+https://mralexgarrido.github.io/whatswidget/
 ```
+
+## Privacy and security
+
+WhatsWidget is delivered as a static client-side application. Read [PRIVACY.md](PRIVACY.md) for data-handling boundaries and [SECURITY.md](SECURITY.md) for responsible vulnerability reporting.
+
+Never include credentials, API keys, private customer information, or confidential messages in generated code or public issues.
+
+## Support
+
+Read [SUPPORT.md](SUPPORT.md) before opening an issue. Reproducible bug reports and clearly explained feature requests are welcome.
 
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+Contributions are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md), follow the [Code of Conduct](CODE_OF_CONDUCT.md), and use the repository's issue forms before proposing a substantial change.
 
-Please read our [Contributing Guidelines](CONTRIBUTING.md) and [Code of Conduct](CODE_OF_CONDUCT.md) for more details.
+## Trademark notice
 
-## Troubleshooting & FAQ
-
-**Q: Does the generated widget require any external libraries (like React) on my website?**
-A: No. The generated code is entirely standalone, using vanilla JavaScript and CSS.
-
-**Q: Can I change the WhatsApp number later?**
-A: You will need to regenerate the code snippet with the new number and replace the old snippet on your website.
-
-**Q: The widget isn't showing up on my site.**
-A: Ensure the code snippet is placed correctly inside the `<body>` tag, ideally near the bottom. Check your browser's developer console for any errors.
-
-## Roadmap
-
-- [ ] Add support for multiple agents/numbers.
-- [ ] Implement opening hours/schedule.
-- [ ] Add Google Analytics tracking integration for the widget.
-- [ ] Create plugins for popular CMS platforms (WordPress, Shopify).
+WhatsApp is a trademark of Meta Platforms, Inc. WhatsWidget is an independent open-source project. It is not affiliated with, endorsed by, or sponsored by WhatsApp or Meta.
 
 ## License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+Released under the [MIT License](LICENSE).

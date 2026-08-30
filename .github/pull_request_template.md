@@ -1,22 +1,49 @@
-## Description
+## Summary
 
-Please include a summary of the change and which issue is fixed. Please also include relevant motivation and context.
+Describe the problem and the focused solution.
 
-Fixes # (issue)
+## Why this change is needed
 
-## Type of change
+Explain the user, maintenance, accessibility, security, or documentation impact.
 
-- [ ] Bug fix (non-breaking change which fixes an issue)
-- [ ] New feature (non-breaking change which adds functionality)
-- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
-- [ ] This change requires a documentation update
+## Changes
 
-## Checklist:
+- 
+- 
 
-- [ ] My code follows the style guidelines of this project
-- [ ] I have performed a self-review of my own code
-- [ ] I have commented my code, particularly in hard-to-understand areas
-- [ ] I have made corresponding changes to the documentation
-- [ ] My changes generate no new warnings
-- [ ] I have added tests that prove my fix is effective or that my feature works
-- [ ] New and existing unit tests pass locally with my changes
+## Validation
+
+- [ ] `npm run typecheck`
+- [ ] `npm run lint`
+- [ ] `npm run format:check`
+- [ ] `npm run test`
+- [ ] `npm run build -- --base=/whatswidget/`
+
+List any additional manual checks:
+
+## Interface evidence
+
+Add before-and-after screenshots or recordings when the interface changes. Include mobile and desktop views when relevant.
+
+## Accessibility
+
+- [ ] Keyboard interaction was tested.
+- [ ] Visible focus was preserved.
+- [ ] Labels, headings, and accessible names remain meaningful.
+- [ ] Contrast, zoom, and reduced motion were considered.
+- [ ] Not applicable. Explain why below.
+
+## Security and privacy
+
+- [ ] No secrets or personal data were added.
+- [ ] User-controlled values are validated or encoded where relevant.
+- [ ] New third-party services or data collection are documented.
+- [ ] Not applicable. Explain why below.
+
+## Deployment and rollback
+
+Describe deployment impact, smoke tests, and the fastest safe rollback.
+
+## Related issue
+
+Closes #

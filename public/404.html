@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#0f766e" />
+    <title>Page not found | WhatsWidget</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        display: grid;
+        min-height: 100vh;
+        margin: 0;
+        place-items: center;
+        background: #f8fafc;
+        color: #0f172a;
+      }
+
+      main {
+        width: min(38rem, calc(100% - 2rem));
+        padding: 3rem 2rem;
+        border: 1px solid #cbd5e1;
+        border-radius: 1rem;
+        background: #ffffff;
+        text-align: center;
+        box-shadow: 0 20px 45px rgb(15 23 42 / 10%);
+      }
+
+      h1 {
+        margin-top: 0;
+        font-size: clamp(2rem, 6vw, 3.5rem);
+      }
+
+      p {
+        line-height: 1.6;
+      }
+
+      a {
+        display: inline-block;
+        margin-top: 0.75rem;
+        padding: 0.75rem 1rem;
+        border-radius: 0.65rem;
+        background: #0f766e;
+        color: #ffffff;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      a:focus-visible {
+        outline: 3px solid #f59e0b;
+        outline-offset: 4px;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        body {
+          background: #020617;
+          color: #e2e8f0;
+        }
+
+        main {
+          border-color: #334155;
+          background: #0f172a;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p aria-hidden="true">404</p>
+      <h1>Page not found</h1>
+      <p>The requested WhatsWidget page does not exist or may have moved.</p>
+      <a href="https://mralexgarrido.github.io/whatswidget/">
+        Return to the widget generator
+      </a>
+    </main>
+  </body>
+</html>

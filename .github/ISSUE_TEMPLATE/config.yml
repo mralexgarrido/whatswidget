@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/mralexgarrido/whatswidget/security/policy
+    about: Read the private reporting instructions. Do not disclose vulnerabilities in a public issue.
+  - name: Usage and support guidance
+    url: https://github.com/mralexgarrido/whatswidget/blob/main/SUPPORT.md
+    about: Review setup, embedding, troubleshooting, and support expectations before opening an issue.
