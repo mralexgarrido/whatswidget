@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">WhatsWidget</title>
+  <rect width="64" height="64" rx="16" fill="#0f766e" />
+  <path
+    d="M17 18.5h30a5 5 0 0 1 5 5v17a5 5 0 0 1-5 5H31l-10.5 7v-7H17a5 5 0 0 1-5-5v-17a5 5 0 0 1 5-5Z"
+    fill="#fff"
+  />
+  <path
+    d="M23 27h18M23 34h13"
+    fill="none"
+    stroke="#0f766e"
+    stroke-linecap="round"
+    stroke-width="4"
+  />
+</svg>

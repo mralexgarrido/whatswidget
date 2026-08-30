@@ -1,0 +1,25 @@
+# WhatsWidget
+
+> WhatsWidget is a free, open-source browser application for creating, previewing, and embedding a customizable WhatsApp contact widget.
+
+## Canonical resources
+
+- Live application: https://mralexgarrido.github.io/whatswidget/
+- Source repository: https://github.com/mralexgarrido/whatswidget
+- Usage and embedding guide: https://github.com/mralexgarrido/whatswidget/blob/main/docs/EMBEDDING.md
+- Architecture: https://github.com/mralexgarrido/whatswidget/blob/main/docs/ARCHITECTURE.md
+- Security policy: https://github.com/mralexgarrido/whatswidget/security/policy
+- Privacy boundaries: https://github.com/mralexgarrido/whatswidget/blob/main/PRIVACY.md
+
+## Product summary
+
+WhatsWidget lets a website owner configure a WhatsApp-enabled phone number, prepare a default message, preview the contact widget, and copy the generated embed code for use on a website.
+
+## Important context
+
+- The maintained application is static and client-side.
+- It does not require a WhatsWidget account or project-owned backend.
+- Configuration values are processed in the browser.
+- Website owners should test generated code on the published website, including keyboard use, mobile layouts, Content Security Policy, and conflicts with other fixed-position controls.
+- WhatsWidget is independent from WhatsApp and Meta. It is not affiliated with, endorsed by, or sponsored by either company.
+- The project is released under the MIT License.
