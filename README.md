@@ -17,7 +17,7 @@ A powerful, open-source web application that enables website owners to easily cr
 
 ## Demo
 
-[Link to Live Demo (GitHub Pages)](https://your-username.github.io/whatsapp-widget-generator) *(Coming soon)*
+[Link to Live Demo (GitHub Pages)](https://mralexgarrido.github.io/whatswidget/)
 
 ## Usage
 
