@@ -1,46 +1,88 @@
-# Contributing to WhatsApp Widget Generator
+# Contributing to WhatsWidget
 
-First off, thank you for considering contributing to the WhatsApp Widget Generator! It's people like you that make open source such a great community.
+Thank you for helping improve WhatsWidget. Contributions should keep the project lightweight, accessible, secure, and easy for website owners to use.
 
-## Where do I go from here?
+## Before opening a pull request
 
-If you've noticed a bug or have a feature request, make sure to check our [Issues](https://github.com/your-username/whatsapp-widget-generator/issues) to see if someone else has already created a ticket. If not, go ahead and make one!
+- Search existing issues and pull requests to avoid duplicate work.
+- Use the bug or feature issue form for a change that needs discussion.
+- Report vulnerabilities privately by following [SECURITY.md](SECURITY.md).
+- Keep each pull request focused on one problem.
+- Do not include secrets, personal information, or real customer data.
 
-## Fork & create a branch
+## Development setup
 
-If this is something you think you can fix, then fork the repository and create a branch with a descriptive name.
-
-A good branch name would be (where issue #325 is the ticket you're working on):
-
-```sh
-git checkout -b 325-add-dark-mode
+```bash
+git clone https://github.com/mralexgarrido/whatswidget.git
+cd whatswidget
+npm ci
+npm run dev
 ```
 
-## Local Development
+Use the Node.js version declared in `.nvmrc`.
 
-1. Ensure you have Node.js installed.
-2. Clone your fork and run `npm install`.
-3. Run `npm run dev` to start the local development server.
-4. Make your changes in the `src/` directory.
+## Branch and commit conventions
 
-## Linting and Testing
+Use a descriptive branch name:
 
-Before submitting a pull request, please ensure that your code passes all linting and tests.
-
-```sh
-# Run type checking
-npm run lint
-
-# Run tests (if applicable)
-npm run test
+```text
+feat/widget-position-options
+fix/phone-number-validation
+docs/embedding-guide
+chore/dependency-maintenance
 ```
 
-## Pull Requests
+Prefer concise, imperative commit messages. Conventional Commit prefixes are encouraged:
 
-When you are ready to submit a pull request, please fill out the pull request template provided. Ensure that your PR description clearly describes the problem and solution.
+```text
+feat: add a compact widget style
+fix: preserve encoded message characters
+docs: clarify WordPress embedding
+test: cover phone-number normalization
+```
 
-1. Submit the PR against the `main` branch.
-2. Link the PR to the relevant issue if there is one.
-3. Wait for a maintainer to review your code. We may ask for some changes before merging.
+## Required validation
 
-Thank you for contributing!
+Run the complete local check before requesting review:
+
+```bash
+npm run check
+```
+
+A pull request should not be merged while CI, tests, type checking, linting, formatting, security checks, or the production build are failing.
+
+## Product standards
+
+### Accessibility
+
+- Use semantic HTML before ARIA.
+- Support keyboard interaction and visible focus states.
+- Associate every form control with a clear label.
+- Maintain sufficient contrast.
+- Respect reduced-motion preferences.
+- Test meaningful interface changes at narrow and wide viewport sizes.
+
+### Security and privacy
+
+- Treat browser code as public.
+- Never add credentials or privileged API keys to frontend code.
+- Validate and encode user-controlled values before placing them in generated markup or URLs.
+- Use `rel="noopener noreferrer"` with links that open a new tab.
+- Avoid adding analytics or third-party scripts without documenting the privacy impact.
+- Do not weaken a site's Content Security Policy to accommodate a feature.
+
+### Scope and maintainability
+
+- Prefer focused React components and straightforward browser APIs.
+- Avoid adding a dependency when a small, well-tested implementation is clearer.
+- Preserve existing behavior unless the issue or pull request explicitly proposes a breaking change.
+- Update documentation and tests when behavior changes.
+- Respect the existing npm lockfile.
+
+## Pull request checklist
+
+The pull request template asks for the reason for the change, validation performed, screenshots when the interface changes, accessibility considerations, security and privacy impact, and rollback information. Complete the relevant sections rather than deleting them.
+
+## Code of Conduct
+
+Participation is governed by [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).

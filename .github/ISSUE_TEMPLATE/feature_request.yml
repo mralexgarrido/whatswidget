@@ -1,0 +1,64 @@
+name: Feature request
+description: Propose a focused improvement to the generator, generated widget, documentation, or project workflow.
+title: "[Feature]: "
+body:
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Preflight checks
+      options:
+        - label: I searched existing issues and pull requests for the same request.
+          required: true
+        - label: I can explain the user problem this feature would solve.
+          required: true
+
+  - type: dropdown
+    id: audience
+    attributes:
+      label: Primary audience
+      options:
+        - Website owner using the generator
+        - Visitor using an embedded widget
+        - Contributor or maintainer
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem to solve
+      description: Describe the current limitation and who experiences it.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: Describe the smallest useful change.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Explain workarounds or competing approaches.
+
+  - type: textarea
+    id: accessibility
+    attributes:
+      label: Accessibility considerations
+      description: Note keyboard, screen-reader, contrast, motion, zoom, or mobile implications.
+
+  - type: textarea
+    id: privacy-security
+    attributes:
+      label: Privacy and security considerations
+      description: Note new data collection, third-party services, permissions, or script execution.
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context

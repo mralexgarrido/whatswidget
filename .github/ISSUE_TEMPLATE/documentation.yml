@@ -1,0 +1,32 @@
+name: Documentation improvement
+description: Report unclear, incorrect, missing, or outdated project documentation.
+title: "[Docs]: "
+body:
+  - type: input
+    id: location
+    attributes:
+      label: Documentation location
+      description: Link to the file, heading, or live page.
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is unclear or incorrect?
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggested
+    attributes:
+      label: Suggested improvement
+      description: Provide replacement wording or the missing information when possible.
+
+  - type: checkboxes
+    id: sensitive
+    attributes:
+      label: Privacy check
+      options:
+        - label: This report contains no credentials, private phone numbers, or customer information.
+          required: true
