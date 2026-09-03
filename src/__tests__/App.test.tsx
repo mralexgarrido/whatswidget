@@ -43,5 +43,27 @@ describe('WhatsWidget', () => {
 
     expect(screen.getByText('Your Custom Widget Code')).toBeInTheDocument();
     expect(screen.getByText('Copy Code')).toBeInTheDocument();
+    expect(screen.getByRole('dialog')).toHaveAttribute('aria-modal', 'true');
+  });
+
+  it('provides a dedicated mobile preview workspace', () => {
+    render(<App />);
+    const previewButton = screen.getByRole('button', { name: 'Preview' });
+    const customizeButton = screen.getByRole('button', { name: 'Customize' });
+
+    expect(customizeButton).toHaveAttribute('aria-pressed', 'true');
+    fireEvent.click(previewButton);
+    expect(previewButton).toHaveAttribute('aria-pressed', 'true');
+    expect(customizeButton).toHaveAttribute('aria-pressed', 'false');
+    expect(
+      screen.getByRole('main', { name: 'Widget preview' }),
+    ).toBeInTheDocument();
+  });
+
+  it('closes the code dialog with Escape', () => {
+    render(<App />);
+    fireEvent.click(screen.getByText('Get Code'));
+    fireEvent.keyDown(document, { key: 'Escape' });
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   });
 });

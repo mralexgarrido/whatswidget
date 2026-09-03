@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Config } from '../types';
 import { X, Copy, Check } from 'lucide-react';
 
@@ -10,6 +10,15 @@ export function CodeModal({
   onClose: () => void;
 }) {
   const [copied, setCopied] = useState(false);
+  const [copyError, setCopyError] = useState(false);
+
+  useEffect(() => {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') onClose();
+    };
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [onClose]);
 
   const generateCode = () => {
     const configJson = JSON.stringify(config);
@@ -336,28 +345,44 @@ export function CodeModal({
 
   const code = generateCode();
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(code);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(code);
+      setCopyError(false);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      setCopied(false);
+      setCopyError(true);
+    }
   };
 
   return (
-    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl overflow-hidden flex flex-col max-h-[90vh]">
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4">
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="widget-code-title"
+        className="bg-white rounded-xl shadow-2xl w-full max-w-3xl overflow-hidden flex flex-col max-h-[calc(100dvh-1.5rem)] sm:max-h-[90vh]"
+      >
         <div className="flex items-center justify-between p-4 border-b border-gray-200">
-          <h2 className="text-xl font-semibold text-gray-900">
+          <h2
+            id="widget-code-title"
+            className="text-lg font-semibold text-gray-900 sm:text-xl"
+          >
             Your Custom Widget Code
           </h2>
           <button
+            type="button"
+            aria-label="Close code dialog"
             onClick={onClose}
-            className="text-gray-500 hover:text-gray-700 transition-colors"
+            className="rounded-md p-2 text-gray-500 transition-colors hover:text-gray-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600"
           >
             <X size={24} />
           </button>
         </div>
 
-        <div className="p-6 overflow-y-auto flex-1">
+        <div className="flex-1 overflow-y-auto p-4 sm:p-6">
           <p className="text-gray-600 mb-4 text-sm leading-relaxed">
             Copy the standalone JavaScript snippet below and paste it before the
             closing <code>&lt;/body&gt;</code> tag on your HTML website.
@@ -368,8 +393,9 @@ export function CodeModal({
               <code>{code}</code>
             </pre>
             <button
+              type="button"
               onClick={handleCopy}
-              className="absolute top-4 right-4 bg-white/10 hover:bg-white/20 text-white p-2 rounded-md backdrop-blur-sm transition-all flex items-center gap-2"
+              className="sticky left-full top-2 mb-2 flex min-h-11 items-center gap-2 rounded-md bg-gray-700 px-3 py-2 text-white shadow-lg transition-colors hover:bg-gray-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
             >
               {copied ? (
                 <Check size={16} className="text-green-400" />
@@ -381,6 +407,19 @@ export function CodeModal({
               </span>
             </button>
           </div>
+          <p className="mt-3 min-h-5 text-sm" aria-live="polite">
+            {copied && (
+              <span className="text-emerald-700">
+                Code copied to your clipboard.
+              </span>
+            )}
+            {copyError && (
+              <span className="text-red-700">
+                Copy was blocked by your browser. Select the code and copy it
+                manually.
+              </span>
+            )}
+          </p>
         </div>
       </div>
     </div>
