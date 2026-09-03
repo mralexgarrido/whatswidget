@@ -1,5 +1,11 @@
 import { useState } from 'react';
-import { Code2, Github, ShieldCheck } from 'lucide-react';
+import {
+  Code2,
+  Github,
+  Settings2,
+  ShieldCheck,
+  Smartphone,
+} from 'lucide-react';
 import { CodeModal } from './components/CodeModal';
 import { Preview } from './components/Preview';
 import { SettingsPanel } from './components/SettingsPanel';
@@ -9,10 +15,17 @@ import { Config } from './types';
 export default function App() {
   const [config, setConfig] = useState<Config>(DEFAULT_CONFIG);
   const [isCodeModalOpen, setIsCodeModalOpen] = useState(false);
+  const [mobileView, setMobileView] = useState<'customize' | 'preview'>(
+    'customize',
+  );
 
   return (
-    <div className="flex min-h-screen w-full flex-col overflow-hidden bg-gray-50 font-sans text-gray-900 lg:h-screen lg:flex-row">
-      <aside className="z-10 flex h-[58vh] w-full flex-shrink-0 flex-col border-b border-gray-200 bg-white shadow-sm lg:h-screen lg:w-[400px] lg:border-b-0 lg:border-r">
+    <div className="flex min-h-dvh w-full flex-col overflow-hidden bg-gray-50 font-sans text-gray-900 lg:h-screen lg:min-h-0 lg:flex-row">
+      <aside
+        className={`z-10 w-full flex-shrink-0 flex-col border-b border-gray-200 bg-white shadow-sm lg:flex lg:h-screen lg:w-[400px] lg:border-b-0 lg:border-r ${
+          mobileView === 'customize' ? 'flex h-dvh' : 'flex h-auto'
+        }`}
+      >
         <header className="flex items-center justify-between border-b border-gray-200 bg-white p-4">
           <div className="flex min-w-0 items-center gap-2">
             <div
@@ -41,11 +54,47 @@ export default function App() {
           </button>
         </header>
 
-        <div className="flex-1 overflow-y-auto">
+        <nav
+          aria-label="Mobile workspace view"
+          className="grid grid-cols-2 gap-1 border-b border-gray-200 bg-gray-100 p-1.5 lg:hidden"
+        >
+          <button
+            type="button"
+            aria-pressed={mobileView === 'customize'}
+            onClick={() => setMobileView('customize')}
+            className={`flex min-h-11 items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 ${
+              mobileView === 'customize'
+                ? 'bg-white text-gray-950 shadow-sm'
+                : 'text-gray-600 hover:text-gray-950'
+            }`}
+          >
+            <Settings2 size={17} aria-hidden="true" />
+            Customize
+          </button>
+          <button
+            type="button"
+            aria-pressed={mobileView === 'preview'}
+            onClick={() => setMobileView('preview')}
+            className={`flex min-h-11 items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 ${
+              mobileView === 'preview'
+                ? 'bg-white text-gray-950 shadow-sm'
+                : 'text-gray-600 hover:text-gray-950'
+            }`}
+          >
+            <Smartphone size={17} aria-hidden="true" />
+            Preview
+          </button>
+        </nav>
+
+        <div
+          className={`${mobileView === 'customize' ? 'flex-1' : 'hidden'} min-h-0 overflow-y-auto lg:block lg:flex-1`}
+        >
           <SettingsPanel config={config} setConfig={setConfig} />
         </div>
 
-        <footer className="border-t border-gray-200 bg-gray-50 px-4 py-3 text-xs text-gray-600">
+        <footer
+          className={`${mobileView === 'customize' ? 'block' : 'hidden'} border-t border-gray-200 bg-gray-50 px-4 py-3 text-xs text-gray-600 lg:block`}
+        >
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
             <a
               href="https://github.com/mralexgarrido/whatswidget"
@@ -72,7 +121,10 @@ export default function App() {
         </footer>
       </aside>
 
-      <main className="relative min-h-[42vh] flex-1 overflow-hidden bg-gray-100 lg:min-h-0">
+      <main
+        aria-label="Widget preview"
+        className={`${mobileView === 'preview' ? 'relative flex-1' : 'hidden'} min-h-0 overflow-hidden bg-gray-100 lg:relative lg:block lg:min-h-0 lg:flex-1`}
+      >
         <div
           className="pointer-events-none absolute inset-0"
           style={{
