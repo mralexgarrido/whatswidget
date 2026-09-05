@@ -9,6 +9,8 @@
 
 **Live app:** [https://mralexgarrido.github.io/whatswidget/](https://mralexgarrido.github.io/whatswidget/)
 
+[Embedding guide](docs/EMBEDDING.md) · [Updating an installed widget](docs/UPDATING_WIDGETS.md) · [Support](SUPPORT.md) · [Release checklist](docs/RELEASE_CHECKLIST.md)
+
 ## Overview
 
 WhatsWidget is a free, open-source, browser-based generator for website owners who want to add a WhatsApp contact option without installing a large plugin or building a custom integration. Configure the widget, review the live preview, copy the generated snippet, and place it in your website's custom-code area.
@@ -36,6 +38,12 @@ The maintained application is intentionally lightweight. It does not require an 
 7. Publish and test the final page.
 
 See [Embedding and testing guidance](docs/EMBEDDING.md) for implementation notes and troubleshooting.
+
+## Already using WhatsWidget?
+
+An installed standalone snippet is a copy on your website. Updating the generator does not automatically replace that copy. To adopt a change, preserve the previous snippet, generate and review the replacement, test it on a preview page, and replace the existing installation rather than adding a second widget.
+
+Read [Updating an installed widget](docs/UPDATING_WIDGETS.md) for the handoff and rollback checklist. [GitHub Releases](https://github.com/mralexgarrido/whatswidget/releases) contains release announcements when published; [merged pull requests](https://github.com/mralexgarrido/whatswidget/pulls?q=is%3Apr+is%3Amerged) provide the underlying change history. Do not assume a version label alone identifies the code already installed on a third-party website.
 
 ## Local development
 
