@@ -393,11 +393,12 @@ export function CodeModal({
         <div className="flex-1 overflow-y-auto p-4 sm:p-6">
           <p className="text-gray-600 mb-4 text-sm leading-relaxed">
             Copy the standalone JavaScript snippet below and paste it before the
-            closing <code>&lt;/body&gt;</code> tag on your HTML website.
-            For Google Tag Manager, use a Custom HTML tag, paste the entire
-            snippet including the script tags, and select a DOM Ready trigger.
-            Test in Preview before publishing. Use floating placement for GTM.
-            Previously copied snippets must be replaced with newly generated code.
+            closing <code>&lt;/body&gt;</code> tag on your HTML website. For
+            Google Tag Manager, use a Custom HTML tag, paste the entire snippet
+            including the script tags, and select a DOM Ready trigger. Test in
+            Preview before publishing. Use floating placement for GTM.
+            Previously copied snippets must be replaced with newly generated
+            code.
           </p>
 
           <div className="relative group">
