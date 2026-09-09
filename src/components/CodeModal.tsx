@@ -21,10 +21,12 @@ export function CodeModal({
   }, [onClose]);
 
   const generateCode = () => {
-    const configJson = JSON.stringify(config);
+    const configJson = JSON.stringify(config).replace(/</g, '\\u003c');
 
     return `<script>
 (function() {
+  function init() {
+  if (document.getElementById('whatsapp-widget-container')) return;
   const config = ${configJson};
 
   // Create container
@@ -195,7 +197,7 @@ export function CodeModal({
   if (config.workingHours && config.workingHours.enabled) {
     const now = new Date();
     const day = now.getDay();
-    if (!config.workingHours.days.includes(day)) {
+    if (config.workingHours.days.indexOf(day) === -1) {
       isOnline = false;
     } else {
       const partsStart = config.workingHours.startTime.split(':').map(Number);
@@ -339,6 +341,12 @@ export function CodeModal({
       openWhatsApp(phone, config.prefilledMessage);
     });
   });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 })();
 </script>`;
   };
@@ -386,6 +394,10 @@ export function CodeModal({
           <p className="text-gray-600 mb-4 text-sm leading-relaxed">
             Copy the standalone JavaScript snippet below and paste it before the
             closing <code>&lt;/body&gt;</code> tag on your HTML website.
+            For Google Tag Manager, use a Custom HTML tag, paste the entire
+            snippet including the script tags, and select a DOM Ready trigger.
+            Test in Preview before publishing. Use floating placement for GTM.
+            Previously copied snippets must be replaced with newly generated code.
           </p>
 
           <div className="relative group">
