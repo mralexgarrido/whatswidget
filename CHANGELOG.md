@@ -15,6 +15,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Changed
 
+- Refreshed social link previews with a lightweight 1200-by-630 JPEG showing the website chat widget, a clearer description, and complete image metadata.
 - Corrected repository URLs, badges, setup instructions, and contribution guidance.
 - Hardened GitHub Actions with least-privilege permissions, timeouts, concurrency controls, locked installs, and immutable action revisions.
 - Updated the Docker build environment to Node.js 24.
